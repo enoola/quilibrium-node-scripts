@@ -11,6 +11,10 @@ config.yml
 #*.xlsx
 *.sql
 *.logs
+VMLIST
 testdb.php
 indexdb.php
 myautoload.php
+myarmysshkey
+origscriptfromquil
+
