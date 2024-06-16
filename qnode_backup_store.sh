@@ -39,7 +39,7 @@ tar -cvzf ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz qnode-${HOSTNAME}_rev
 
 # send it to our remote server
 # via rsync wrapped in an SSH session
-rsync -e "ssh -i ~/.ssh/id_ed25519" --progress --checksum --verbose ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz enola@${DESTINATION_HOSTNAME}:/data/enola/QuilNodes/${HOSTNAME}
+rsync -e "ssh -i ~/.ssh/id_ed25519" --progress --checksum --verbose ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz enola@${DESTINATION_HOSTNAME}:${DESTINATION_PATH}
 
 # now we can start the node backup
 service ceremonyclient start
