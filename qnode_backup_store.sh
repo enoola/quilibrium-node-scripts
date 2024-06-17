@@ -35,7 +35,7 @@ echo "qnode stopped"
 prefixdate=$(date +"%Y%m%d_%H%M")
 
 # create the archive: 
-tar -cvzf ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz qnode-${HOSTNAME}_revenus.csv qnode_log_revenus.sh ~/ceremonyclient/node/.config
+tar -cvzf ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz ${HOSTNAME}_revenus.csv ~/ceremonyclient/node/.config
 
 QUILERS_RSAKEY_PATH="/root/.ssh/"
 QUILERS_RSAKEY_NAME="id_rsa_qnode"
