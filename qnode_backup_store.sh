@@ -35,11 +35,18 @@ echo "qnode stopped"
 prefixdate=$(date +"%Y%m%d_%H%M")
 
 # create the archive: 
-tar -cvzf ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz qnode-${HOSTNAME}_revenus.csv qnode-backup.sh qnode-log-revenus.sh ~/ceremonyclient/node/.config
+tar -cvzf ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz qnode-${HOSTNAME}_revenus.csv qnode_log_revenus.sh ~/ceremonyclient/node/.config
 
+QUILERS_RSAKEY_PATH="/root/.ssh/"
+QUILERS_RSAKEY_NAME="id_rsa_qnode"
 # send it to our remote server
 # via rsync wrapped in an SSH session
-rsync -e "ssh -i ~/.ssh/id_ed25519" --progress --checksum --verbose ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz enola@${DESTINATION_HOSTNAME}:${DESTINATION_PATH}
+if [[ ! -f "${QUILERS_RSAKEY_PATH}/${QUILERS_RSAKEY_NAME}" ]]; then
+	echo "File not found: ${QUILERS_RSAKEY_PATH}/${QUILERS_RSAKEY_NAME}"
+fi
+
+#rsync -e "ssh -i ~/.ssh/id_ed25519" --progress --checksum --verbose ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz enola@${DESTINATION_HOSTNAME}:${DESTINATION_PATH}
+rsync -e "ssh -i ~/.ssh/id_rsa_qnode" --progress --checksum --verbose ${prefixdate}_qnode_${HOSTNAME}_KandStore.tar.gz enola@${DESTINATION_HOSTNAME}:${DESTINATION_PATH}
 
 # now we can start the node backup
 service ceremonyclient start
