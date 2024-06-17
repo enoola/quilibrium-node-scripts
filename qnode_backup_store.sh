@@ -6,8 +6,8 @@
 ##
 
 ## hostname or ip
-DESTINATION_HOSTNAME=contacrotte.eu
-DESTINATION_USERNAME=REPLACE_WITH_USERNAME
+DESTINATION_HOSTNAME=$(cat /root/conf_hostname.conf)
+DESTINATION_USERNAME=$(cat /root/conf_username.conf)
 
 ## /!\ we rely on the machine it runs on' hostname to know where to put the file,
 ## and also for the archive naming later on
